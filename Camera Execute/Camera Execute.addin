@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Command">
+    <Text>Command Camera Execute</Text>
+    <Description>Some description for Camera Execute</Description>
+    <Assembly>Camera Execute.dll</Assembly>
+    <FullClassName>Camera_Execute.Command</FullClassName>
+    <ClientId>75d0fc76-edd2-4944-9260-66ef1aa38f68</ClientId>
+    <VendorId>com.typepad.thebuildingcoder</VendorId>
+    <VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
+  </AddIn>
+  <AddIn Type="Application">
+    <Name>Application Camera Execute</Name>
+    <Assembly>Camera Execute.dll</Assembly>
+    <FullClassName>Camera_Execute.App</FullClassName>
+    <ClientId>f2f0d584-bad0-48a6-a2bc-2cda52a6a178</ClientId>
+    <VendorId>com.typepad.thebuildingcoder</VendorId>
+    <VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
+  </AddIn>
+</RevitAddIns>
