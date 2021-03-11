@@ -78,16 +78,13 @@ namespace Camera_Execute
 
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
+        // gets coordinates as string and converts to double
         public static XYZ GetPointData(string X, string Y, string Z)
         {
             double x = double.Parse(X);
             double y = double.Parse(Y);
             double z = double.Parse(Z);
-            return new Autodesk.Revit.DB.XYZ(x, y, z);
+            return new XYZ(x, y, z);
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)

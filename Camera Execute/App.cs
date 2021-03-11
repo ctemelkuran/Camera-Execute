@@ -158,12 +158,8 @@ namespace Camera_Execute
             PushButton button = panel.AddItem(data) as PushButton;
             button.Enabled = true;
 
-            // create push buttons to pull down button
-           // optionsBtn.AddPushButton(new PushButtonData("Turn On", "Start Saving", ExecutingAssemblyPath, "Camera_Execute.Command"));
-           
-
-
         }
+
         private BitmapSource GetImageSources(Image img)
         {
             BitmapImage bmp = new BitmapImage();
