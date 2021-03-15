@@ -64,9 +64,9 @@ namespace Camera_Execute
             upX.Text = Convert.ToString(up.X);
             upY.Text = Convert.ToString(up.Y);
             upZ.Text = Convert.ToString(up.Z);
-            fwdZ.Text = Convert.ToString(fwd.X);
+            fwdX.Text = Convert.ToString(fwd.X);
             fwdY.Text = Convert.ToString(fwd.Y);
-            fwdX.Text = Convert.ToString(fwd.Z);
+            fwdZ.Text = Convert.ToString(fwd.Z);
     }
 
         public Form1()
