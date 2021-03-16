@@ -23,14 +23,6 @@ namespace Camera_Execute
             UIDocument uidoc = uiapp.ActiveUIDocument;
             Application app = uiapp.Application;
             Document doc = uidoc.Document;
-            /*
-            using (Transaction tx = new Transaction(doc))
-            {
-                tx.Start("Transaction Name");
-                App.Instance.ShowForm(commandData.Application);
-                tx.Commit();
-            }
-            */
      
             Form1 form1 = new Form1(commandData);
             // Modify document within a transaction
