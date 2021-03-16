@@ -47,11 +47,11 @@ namespace Camera_Execute
             XYZ eye = getViewOrientation3D.EyePosition; // camera position
             XYZ up = getViewOrientation3D.UpDirection; // up direction of the camera
             XYZ fwd = getViewOrientation3D.ForwardDirection; // the direction the camera is looking at
-                                                         
+
             //initialize the textbox data
-            eyeX.Text = Convert.ToString(eye.X);
-            eyeY.Text = Convert.ToString(eye.Y);
-            eyeZ.Text = Convert.ToString(eye.Z);
+            eyeX.Text = eye.X.ToString("0.000");
+            eyeY.Text = eye.Y.ToString("0.000");
+            eyeZ.Text = eye.Z.ToString("0.000");
             upX.Text = Convert.ToString(up.X);
             upY.Text = Convert.ToString(up.Y);
             upZ.Text = Convert.ToString(up.Z);
@@ -189,9 +189,9 @@ namespace Camera_Execute
             XYZ fwd = getViewOrientation3D.ForwardDirection; // the direction the camera is looking at
 
             //initialize the textbox data
-            eyeX.Text = Convert.ToString(eye.X);
-            eyeY.Text = Convert.ToString(eye.Y);
-            eyeZ.Text = Convert.ToString(eye.Z);
+            eyeX.Text = eye.X.ToString("0.000");
+            eyeY.Text = eye.Y.ToString("0.000");
+            eyeZ.Text = eye.Z.ToString("0.000");
             upX.Text = Convert.ToString(up.X);
             upY.Text = Convert.ToString(up.Y);
             upZ.Text = Convert.ToString(up.Z);

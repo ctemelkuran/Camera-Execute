@@ -58,7 +58,6 @@
             this.CamProp.Size = new System.Drawing.Size(111, 17);
             this.CamProp.TabIndex = 0;
             this.CamProp.Text = "Camera Execute";
-            
             // 
             // X
             // 
