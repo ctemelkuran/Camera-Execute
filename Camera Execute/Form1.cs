@@ -21,22 +21,13 @@ using System.Diagnostics;
 namespace Camera_Execute
 {
     public partial class Form1 : System.Windows.Forms.Form
-    {
-        /// <summary>
-        /// Current UI document
-        /// </summary>
-        
-        /// <summary>
-        /// Current revit document
-        /// </summary>
-        
+    {        
         private ExternalCommandData commandData;
         private UIApplication uiapp;
         private UIDocument uidoc;
         private Document doc;
 
         
-
         public Form1(ExternalCommandData commandData)
             
         {
@@ -73,10 +64,6 @@ namespace Camera_Execute
         {
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         // gets coordinates as string and converts to double
         public static XYZ GetPointData(string X, string Y, string Z)
@@ -188,6 +175,29 @@ namespace Camera_Execute
         private void eyeX_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            View3D view3D = doc.ActiveView as View3D;
+
+            // get view orientation 3D data
+            ViewOrientation3D getViewOrientation3D = view3D.GetOrientation();
+
+            XYZ eye = getViewOrientation3D.EyePosition; // camera position
+            XYZ up = getViewOrientation3D.UpDirection; // up direction of the camera
+            XYZ fwd = getViewOrientation3D.ForwardDirection; // the direction the camera is looking at
+
+            //initialize the textbox data
+            eyeX.Text = Convert.ToString(eye.X);
+            eyeY.Text = Convert.ToString(eye.Y);
+            eyeZ.Text = Convert.ToString(eye.Z);
+            upX.Text = Convert.ToString(up.X);
+            upY.Text = Convert.ToString(up.Y);
+            upZ.Text = Convert.ToString(up.Z);
+            fwdX.Text = Convert.ToString(fwd.X);
+            fwdY.Text = Convert.ToString(fwd.Y);
+            fwdZ.Text = Convert.ToString(fwd.Z);
         }
     }
 }

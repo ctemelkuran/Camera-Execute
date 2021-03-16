@@ -46,6 +46,7 @@
             this.fwdZ = new System.Windows.Forms.TextBox();
             this.fwdY = new System.Windows.Forms.TextBox();
             this.fwdX = new System.Windows.Forms.TextBox();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // CamProp
@@ -57,13 +58,13 @@
             this.CamProp.Size = new System.Drawing.Size(111, 17);
             this.CamProp.TabIndex = 0;
             this.CamProp.Text = "Camera Execute";
-            this.CamProp.Click += new System.EventHandler(this.label1_Click);
+            
             // 
             // X
             // 
             this.X.AutoSize = true;
             this.X.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.X.Location = new System.Drawing.Point(224, 35);
+            this.X.Location = new System.Drawing.Point(184, 35);
             this.X.Name = "X";
             this.X.Size = new System.Drawing.Size(15, 15);
             this.X.TabIndex = 0;
@@ -72,7 +73,7 @@
             // btnSubmit
             // 
             this.btnSubmit.AutoSize = true;
-            this.btnSubmit.Location = new System.Drawing.Point(227, 169);
+            this.btnSubmit.Location = new System.Drawing.Point(225, 167);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(49, 23);
             this.btnSubmit.TabIndex = 2;
@@ -84,7 +85,7 @@
             // 
             this.Y.AutoSize = true;
             this.Y.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Y.Location = new System.Drawing.Point(334, 35);
+            this.Y.Location = new System.Drawing.Point(278, 35);
             this.Y.Name = "Y";
             this.Y.Size = new System.Drawing.Size(14, 15);
             this.Y.TabIndex = 3;
@@ -94,7 +95,7 @@
             // 
             this.Z.AutoSize = true;
             this.Z.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Z.Location = new System.Drawing.Point(434, 35);
+            this.Z.Location = new System.Drawing.Point(358, 35);
             this.Z.Name = "Z";
             this.Z.Size = new System.Drawing.Size(14, 15);
             this.Z.TabIndex = 4;
@@ -129,7 +130,7 @@
             // 
             // eyeX
             // 
-            this.eyeX.Location = new System.Drawing.Point(194, 58);
+            this.eyeX.Location = new System.Drawing.Point(154, 58);
             this.eyeX.Name = "eyeX";
             this.eyeX.Size = new System.Drawing.Size(71, 20);
             this.eyeX.TabIndex = 8;
@@ -137,66 +138,78 @@
             // 
             // eyeY
             // 
-            this.eyeY.Location = new System.Drawing.Point(302, 58);
+            this.eyeY.Location = new System.Drawing.Point(246, 58);
             this.eyeY.Name = "eyeY";
             this.eyeY.Size = new System.Drawing.Size(69, 20);
             this.eyeY.TabIndex = 9;
             // 
             // eyeZ
             // 
-            this.eyeZ.Location = new System.Drawing.Point(413, 58);
+            this.eyeZ.Location = new System.Drawing.Point(337, 58);
             this.eyeZ.Name = "eyeZ";
             this.eyeZ.Size = new System.Drawing.Size(69, 20);
             this.eyeZ.TabIndex = 10;
             // 
             // upX
             // 
-            this.upX.Location = new System.Drawing.Point(194, 87);
+            this.upX.Location = new System.Drawing.Point(154, 87);
             this.upX.Name = "upX";
             this.upX.Size = new System.Drawing.Size(71, 20);
             this.upX.TabIndex = 11;
             // 
             // upY
             // 
-            this.upY.Location = new System.Drawing.Point(302, 87);
+            this.upY.Location = new System.Drawing.Point(246, 87);
             this.upY.Name = "upY";
             this.upY.Size = new System.Drawing.Size(69, 20);
             this.upY.TabIndex = 12;
             // 
             // upZ
             // 
-            this.upZ.Location = new System.Drawing.Point(413, 87);
+            this.upZ.Location = new System.Drawing.Point(337, 87);
             this.upZ.Name = "upZ";
             this.upZ.Size = new System.Drawing.Size(69, 20);
             this.upZ.TabIndex = 13;
             // 
             // fwdZ
             // 
-            this.fwdZ.Location = new System.Drawing.Point(413, 113);
+            this.fwdZ.Location = new System.Drawing.Point(337, 113);
             this.fwdZ.Name = "fwdZ";
             this.fwdZ.Size = new System.Drawing.Size(69, 20);
             this.fwdZ.TabIndex = 16;
             // 
             // fwdY
             // 
-            this.fwdY.Location = new System.Drawing.Point(302, 113);
+            this.fwdY.Location = new System.Drawing.Point(246, 113);
             this.fwdY.Name = "fwdY";
             this.fwdY.Size = new System.Drawing.Size(69, 20);
             this.fwdY.TabIndex = 15;
             // 
             // fwdX
             // 
-            this.fwdX.Location = new System.Drawing.Point(194, 113);
+            this.fwdX.Location = new System.Drawing.Point(154, 113);
             this.fwdX.Name = "fwdX";
             this.fwdX.Size = new System.Drawing.Size(71, 20);
             this.fwdX.TabIndex = 14;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.AutoSize = true;
+            this.btnUpdate.Location = new System.Drawing.Point(154, 167);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(52, 23);
+            this.btnUpdate.TabIndex = 17;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(494, 202);
+            this.ClientSize = new System.Drawing.Size(418, 202);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.fwdZ);
             this.Controls.Add(this.fwdY);
             this.Controls.Add(this.fwdX);
@@ -242,5 +255,6 @@
         private System.Windows.Forms.TextBox fwdZ;
         private System.Windows.Forms.TextBox fwdY;
         private System.Windows.Forms.TextBox fwdX;
+        private System.Windows.Forms.Button btnUpdate;
     }
 }
