@@ -86,7 +86,7 @@ namespace Camera_Execute
             catch (Exception ex)
             {
                 TaskDialog.Show("Revit", ex.Message);
-                return;
+                
             }
 
             // If the creation is successful, close this form
@@ -154,11 +154,6 @@ namespace Camera_Execute
             return null;
         }
 
-        private void eyeX_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             GetViewAndConvert();
@@ -179,9 +174,11 @@ namespace Camera_Execute
             eyeX.Text = eye.X.ToString("0.000");
             eyeY.Text = eye.Y.ToString("0.000");
             eyeZ.Text = eye.Z.ToString("0.000");
+            //write up direction to textbox
             upX.Text = Convert.ToString(up.X);
             upY.Text = Convert.ToString(up.Y);
             upZ.Text = Convert.ToString(up.Z);
+            //write forward direction to textbox
             fwdX.Text = Convert.ToString(fwd.X);
             fwdY.Text = Convert.ToString(fwd.Y);
             fwdZ.Text = Convert.ToString(fwd.Z);
