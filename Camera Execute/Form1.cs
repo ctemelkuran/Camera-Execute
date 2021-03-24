@@ -39,26 +39,8 @@ namespace Camera_Execute
             doc = uidoc.Document;
 
             // active view
-            View3D view3D = doc.ActiveView as View3D;
-
-            // get view orientation 3D data
-            ViewOrientation3D getViewOrientation3D = view3D.GetOrientation();
-
-            XYZ eye = getViewOrientation3D.EyePosition; // camera position
-            XYZ up = getViewOrientation3D.UpDirection; // up direction of the camera
-            XYZ fwd = getViewOrientation3D.ForwardDirection; // the direction the camera is looking at
-
-            //initialize the textbox data
-            eyeX.Text = eye.X.ToString("0.000");
-            eyeY.Text = eye.Y.ToString("0.000");
-            eyeZ.Text = eye.Z.ToString("0.000");
-            upX.Text = Convert.ToString(up.X);
-            upY.Text = Convert.ToString(up.Y);
-            upZ.Text = Convert.ToString(up.Z);
-            fwdX.Text = Convert.ToString(fwd.X);
-            fwdY.Text = Convert.ToString(fwd.Y);
-            fwdZ.Text = Convert.ToString(fwd.Z);
-    }
+            GetViewAndConvert();
+        }
 
         public Form1()
         {
@@ -178,6 +160,11 @@ namespace Camera_Execute
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            GetViewAndConvert();
+        }
+
+        private void GetViewAndConvert()
         {
             View3D view3D = doc.ActiveView as View3D;
 
