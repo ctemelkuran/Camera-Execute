@@ -144,7 +144,7 @@ namespace Camera_Execute
             Image img = Camera_Execute.Properties.Resources.camera_icon;
             ImageSource imgSrc = GetImageSources(img);
 
-            // Create pulldownbutton data
+            // Create Push Button data
             PushButtonData data = new PushButtonData("TurnOn", "Camera", ExecutingAssemblyPath, "Camera_Execute.Command")
             {
                 ToolTip = "Constains camera coordinates",
