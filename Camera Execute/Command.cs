@@ -25,6 +25,7 @@ namespace Camera_Execute
             Document doc = uidoc.Document;
      
             Form1 form1 = new Form1(commandData);
+
             // Modify document within a transaction
             using (Transaction tx = new Transaction(doc))
             {

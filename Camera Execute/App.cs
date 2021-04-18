@@ -108,6 +108,8 @@ namespace Camera_Execute
             return uiview;
         }
 
+
+        #region AddMenu        
         private void AddMenu(UIControlledApplication app)
         {
             // Create constants for tab and panel names
@@ -159,7 +161,9 @@ namespace Camera_Execute
             button.Enabled = true;
 
         }
+        #endregion
 
+        #region GetImageSources
         private BitmapSource GetImageSources(Image img)
         {
             BitmapImage bmp = new BitmapImage();
@@ -178,5 +182,7 @@ namespace Camera_Execute
             }
             return bmp;
         }
+        #endregion
+
     }
 }
