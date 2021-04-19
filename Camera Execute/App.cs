@@ -44,7 +44,7 @@ namespace Camera_Execute
         /// </summary>
         internal static Form1 _form;
 
-
+        #region ShowForm
         /// <summary>
         /// Create and show the form, 
         /// unless it already exists.
@@ -53,22 +53,25 @@ namespace Camera_Execute
         /// The external command invokes 
         /// this on end-user request.
         /// </remarks>
-        public void ShowForm(UIApplication uiapp)
-        {
-            // If we do not have a form yet, create and show it
+        //public void ShowForm(UIApplication uiapp)
+        //{
+        //    // If we do not have a form yet, create and show it
 
-            if (_form == null || _form.IsDisposed)
-            {
-                // Instantiate Form1 to use 
-                // the designer generated form.
+        //    if (_form == null || _form.IsDisposed)
+        //    {
+        //        // Instantiate Form1 to use 
+        //        // the designer generated form.
 
-                _form = new Form1();
+        //        _form = new Form1();
 
-                _form.Show();
+        //        _form.Show();
 
-          
-            }
-        }
+
+        //    }
+        //}
+        #endregion
+       
+
 
 
         public Result OnStartup(UIControlledApplication a)

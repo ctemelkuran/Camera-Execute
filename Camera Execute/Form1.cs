@@ -42,11 +42,6 @@ namespace Camera_Execute
             GetViewAndConvert();
         }
 
-        public Form1()
-        {
-        }
-
-
         // gets coordinates as string and converts to double
         public static XYZ GetPointData(string X, string Y, string Z)
         {
@@ -94,6 +89,9 @@ namespace Camera_Execute
             // this.Close();
         }
 
+
+        #region TextBox Validation
+
         /*
         /// <summary>
         /// validate the input value
@@ -129,7 +127,7 @@ namespace Camera_Execute
             }
         }
         */
-
+        #endregion
         static View3D Get3dView(Document doc)
         {
             FilteredElementCollector collector
