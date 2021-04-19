@@ -20,16 +20,16 @@ using System.Diagnostics;
 #endregion
 namespace Camera_Execute
 {
-    public partial class Form1 : System.Windows.Forms.Form
-    {        
+    public partial class ChangeCameraForm : System.Windows.Forms.Form
+    {
         private ExternalCommandData commandData;
         private UIApplication uiapp;
         private UIDocument uidoc;
         private Document doc;
 
-        
-        public Form1(ExternalCommandData commandData)
-            
+
+        public ChangeCameraForm(ExternalCommandData commandData)
+
         {
             InitializeComponent();
 
@@ -40,7 +40,29 @@ namespace Camera_Execute
 
             // active view
             GetViewAndConvert();
+
+            bool isOpen = false;
+            foreach (System.Windows.Forms.Form form in System.Windows.Forms.Application.OpenForms)
+            {
+                if (form.Name == "ChangeCameraForm")
+                {
+                    isOpen = true;
+                    break;
+                }
+                else
+                {
+                    isOpen = false;
+                }
+            }
+
+
+            while (isOpen == true)
+            {
+
+                GetViewAndConvert();
+            }
         }
+
 
         // gets coordinates as string and converts to double
         public static XYZ GetPointData(string X, string Y, string Z)
@@ -71,17 +93,17 @@ namespace Camera_Execute
 
                 // get active 3d view
                 View3D view3d = doc.ActiveView as View3D;
-                
+
                 // set the orientation with entered data
                 view3d.SetOrientation(viewOrientation);
 
                 uidoc.RefreshActiveView();
-              
+
             }
             catch (Exception ex)
             {
                 TaskDialog.Show("Revit", ex.Message);
-                
+
             }
 
             // If the creation is successful, close this form
@@ -128,6 +150,7 @@ namespace Camera_Execute
         }
         */
         #endregion
+
         static View3D Get3dView(Document doc)
         {
             FilteredElementCollector collector
@@ -155,6 +178,7 @@ namespace Camera_Execute
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             GetViewAndConvert();
+           
         }
 
         private void GetViewAndConvert()
@@ -180,6 +204,17 @@ namespace Camera_Execute
             fwdX.Text = Convert.ToString(fwd.X);
             fwdY.Text = Convert.ToString(fwd.Y);
             fwdZ.Text = Convert.ToString(fwd.Z);
+        }
+        private void GetViewOrientation()
+        {
+            View3D view3D = doc.ActiveView as View3D;
+
+            // get view orientation 3D data
+            ViewOrientation3D getViewOrientation3D = view3D.GetOrientation();
+
+            XYZ eye = getViewOrientation3D.EyePosition; // camera position
+            XYZ up = getViewOrientation3D.UpDirection; // up direction of the camera
+            XYZ fwd = getViewOrientation3D.ForwardDirection; // the direction the camera is looking at
         }
     }
 }

@@ -24,17 +24,20 @@ namespace Camera_Execute
             Application app = uiapp.Application;
             Document doc = uidoc.Document;
      
-            Form1 form1 = new Form1(commandData);
+            ChangeCameraForm changeCameraForm = new ChangeCameraForm(commandData);
 
-            // Modify document within a transaction
-            using (Transaction tx = new Transaction(doc))
-            {
-                tx.Start("Transaction Name");
-                    
-                    form1.Show();
-                tx.Commit();
-            }
+            changeCameraForm.Show();
+
             
+
+            //bool isOpen = false;
+            //foreach (Form form in System.Windows.Forms.Application.OpenForms)
+            //{
+            //    if (form.Name == "ChangeCameraForm")
+            //    {
+            //        isOpen = true;
+            //    }
+            //}
             return Result.Succeeded;
         }
     }

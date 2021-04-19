@@ -24,25 +24,25 @@ namespace Camera_Execute
     class App : IExternalApplication
     {
 
-        // get the absolute path of this assembly
+        // get the absolute path of this assembly for AddMenu
         static string ExecutingAssemblyPath = Assembly
           .GetExecutingAssembly().Location;
 
         // Singleton external application class instance.
-        internal static App _app;
+        //internal static App _app;
 
         /// <summary>
         /// Provide access to singleton class instance.
         /// </summary>
-        public static App Instance
-        {
-            get { return _app; }
-        }
+        //public static App Instance
+        //{
+        //    get { return _app; }
+        //}
 
         /// <summary>
         /// The tooltip form to display.
         /// </summary>
-        internal static Form1 _form;
+        internal static ChangeCameraForm _form;
 
         #region ShowForm
         /// <summary>
@@ -74,12 +74,16 @@ namespace Camera_Execute
 
 
 
-        public Result OnStartup(UIControlledApplication a)
+        public Result OnStartup(UIControlledApplication app)
         {
      
-            _app = this;
-            _form = null;
-            AddMenu(a);
+            //_app = this;
+            //_form = null;
+            AddMenu(app);
+            while (app != null)
+            {
+
+            }
             return Result.Succeeded;
         }
 

@@ -1,6 +1,6 @@
 ﻿namespace Camera_Execute
 {
-    partial class Form1
+    partial class ChangeCameraForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         public void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChangeCameraForm));
             this.CamProp = new System.Windows.Forms.Label();
             this.X = new System.Windows.Forms.Label();
             this.btnSubmit = new System.Windows.Forms.Button();
