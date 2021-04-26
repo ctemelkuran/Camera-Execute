@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
@@ -24,7 +25,7 @@ namespace Camera_Execute
             Application app = uiapp.Application;
             Document doc = uidoc.Document;
      
-            ChangeCameraForm changeCameraForm = new ChangeCameraForm(commandData);
+            ChangeCameraForm changeCameraForm = new ChangeCameraForm();
 
             changeCameraForm.Show();
 
@@ -88,5 +89,12 @@ namespace Camera_Execute
             //}
             return Result.Succeeded;
         }
+        public static double Scale { get; private set; }
+
+        public static XYZ EyePosition { get; private set; }
+
+        public static XYZ UpDirection { get; private set; }
+
+        public static XYZ ForwardDirection { get; private set; }
     }
 }

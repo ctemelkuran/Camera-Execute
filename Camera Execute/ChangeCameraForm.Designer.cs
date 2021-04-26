@@ -133,7 +133,6 @@
             this.eyeX.Name = "eyeX";
             this.eyeX.Size = new System.Drawing.Size(71, 20);
             this.eyeX.TabIndex = 8;
-            
             // 
             // eyeY
             // 
@@ -202,7 +201,7 @@
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // Form1
+            // ChangeCameraForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -227,7 +226,7 @@
             this.Controls.Add(this.X);
             this.Controls.Add(this.CamProp);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "ChangeCameraForm";
             this.Text = "Change Camera";
             this.Load += new System.EventHandler(this.btnSubmit_Click);
             this.ResumeLayout(false);

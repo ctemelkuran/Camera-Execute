@@ -28,12 +28,12 @@ namespace Camera_Execute
         private Document doc;
 
 
-        public ChangeCameraForm(ExternalCommandData commandData)
+        public ChangeCameraForm()//ExternalCommandData commandData)
 
         {
             InitializeComponent();
 
-            this.commandData = commandData;
+            //this.commandData = commandData;
             uiapp = commandData.Application;
             uidoc = uiapp.ActiveUIDocument;
             doc = uidoc.Document;
@@ -41,26 +41,7 @@ namespace Camera_Execute
             // active view
             GetViewAndConvert();
 
-            bool isOpen = false;
-            foreach (System.Windows.Forms.Form form in System.Windows.Forms.Application.OpenForms)
-            {
-                if (form.Name == "ChangeCameraForm")
-                {
-                    isOpen = true;
-                    break;
-                }
-                else
-                {
-                    isOpen = false;
-                }
-            }
 
-
-            while (isOpen == true)
-            {
-
-                GetViewAndConvert();
-            }
         }
 
 
@@ -216,5 +197,6 @@ namespace Camera_Execute
             XYZ up = getViewOrientation3D.UpDirection; // up direction of the camera
             XYZ fwd = getViewOrientation3D.ForwardDirection; // the direction the camera is looking at
         }
+
     }
 }
