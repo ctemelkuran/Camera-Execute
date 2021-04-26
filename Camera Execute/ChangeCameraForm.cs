@@ -26,21 +26,22 @@ namespace Camera_Execute
         private UIApplication uiapp;
         private UIDocument uidoc;
         private Document doc;
+    
 
-
-        public ChangeCameraForm()//ExternalCommandData commandData)
+        public ChangeCameraForm(ExternalCommandData commandData)
 
         {
-            InitializeComponent();
+        InitializeComponent();
 
-            //this.commandData = commandData;
-            uiapp = commandData.Application;
-            uidoc = uiapp.ActiveUIDocument;
-            doc = uidoc.Document;
+        this.commandData = commandData;
+        uiapp = commandData.Application;
+        uidoc = uiapp.ActiveUIDocument;
+        doc = uidoc.Document;
+            
+        // active view
+        GetViewAndConvert();
 
-            // active view
-            GetViewAndConvert();
-
+        //WriteToTextBox();
 
         }
 
@@ -161,7 +162,7 @@ namespace Camera_Execute
             GetViewAndConvert();
            
         }
-
+        
         private void GetViewAndConvert()
         {
             View3D view3D = doc.ActiveView as View3D;
@@ -172,7 +173,7 @@ namespace Camera_Execute
             XYZ eye = getViewOrientation3D.EyePosition; // camera position
             XYZ up = getViewOrientation3D.UpDirection; // up direction of the camera
             XYZ fwd = getViewOrientation3D.ForwardDirection; // the direction the camera is looking at
-
+            
             //initialize the textbox data
             eyeX.Text = eye.X.ToString("0.000");
             eyeY.Text = eye.Y.ToString("0.000");
@@ -186,17 +187,20 @@ namespace Camera_Execute
             fwdY.Text = Convert.ToString(fwd.Y);
             fwdZ.Text = Convert.ToString(fwd.Z);
         }
-        private void GetViewOrientation()
+        private void WriteToTextBox()
         {
-            View3D view3D = doc.ActiveView as View3D;
-
-            // get view orientation 3D data
-            ViewOrientation3D getViewOrientation3D = view3D.GetOrientation();
-
-            XYZ eye = getViewOrientation3D.EyePosition; // camera position
-            XYZ up = getViewOrientation3D.UpDirection; // up direction of the camera
-            XYZ fwd = getViewOrientation3D.ForwardDirection; // the direction the camera is looking at
+            eyeX.Text = App.EyePosition.X.ToString("0.000");
+            eyeY.Text = App.EyePosition.Y.ToString("0.000");
+            eyeZ.Text = App.EyePosition.Z.ToString("0.000");
+            //write up direction to textbox
+            upX.Text = Convert.ToString(App.UpDirection.X);
+            upY.Text = Convert.ToString(App.UpDirection.Y);
+            upZ.Text = Convert.ToString(App.UpDirection.Z);
+            //write forward direction to textbox
+            fwdX.Text = Convert.ToString(App.ForwardDirection.X);
+            fwdY.Text = Convert.ToString(App.ForwardDirection.Y);
+            fwdZ.Text = Convert.ToString(App.ForwardDirection.Z);
         }
-
+        
     }
 }

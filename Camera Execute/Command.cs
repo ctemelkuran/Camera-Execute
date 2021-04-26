@@ -24,11 +24,15 @@ namespace Camera_Execute
             UIDocument uidoc = uiapp.ActiveUIDocument;
             Application app = uiapp.Application;
             Document doc = uidoc.Document;
-     
-            ChangeCameraForm changeCameraForm = new ChangeCameraForm();
 
-            changeCameraForm.Show();
+            App.Instance.ShowForm(commandData);
 
+
+            //ChangeCameraForm changeCameraForm = new ChangeCameraForm(commandData);
+
+            //changeCameraForm.Show();
+
+            /*
             #region RevitOrthoCamera
             // Save current 3D view
             var view3D = doc.ActiveView as View3D;
@@ -78,6 +82,7 @@ namespace Camera_Execute
             double width = 0.5 * Math.Abs(diagVector.DotProduct(rightDirection));
             Scale = Math.Min(height, width);
             #endregion
+            */
 
             //bool isOpen = false;
             //foreach (Form form in System.Windows.Forms.Application.OpenForms)
@@ -89,12 +94,6 @@ namespace Camera_Execute
             //}
             return Result.Succeeded;
         }
-        public static double Scale { get; private set; }
 
-        public static XYZ EyePosition { get; private set; }
-
-        public static XYZ UpDirection { get; private set; }
-
-        public static XYZ ForwardDirection { get; private set; }
     }
 }

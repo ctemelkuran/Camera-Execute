@@ -72,7 +72,7 @@ namespace Camera_Execute
         /// The external command invokes 
         /// this on end-user request.
         /// </remarks>
-        public void ShowForm(UIApplication uiapp)
+        public void ShowForm(ExternalCommandData commandData)
         {
             // If we do not have a form yet, create and show it
 
@@ -81,31 +81,52 @@ namespace Camera_Execute
                 // Instantiate Form1 to use 
                 // the designer generated form.
 
-                _form = new ChangeCameraForm();
+                _form = new ChangeCameraForm(commandData);
 
                 _form.Show();
 
-
+                UIApplication uiapp = commandData.Application;
+                uiapp.Idling += IdlingHandler;
             }
         }
         #endregion
 
+        #region HideForm
+        /// <summary>
+        /// Hide the form.
+        /// </summary>
+        /// <remarks>
+        /// The external command invokes 
+        /// this on end-user request.
+        /// </remarks>
+        public void HideForm(UIApplication uiapp)
+        {
+            if (CloseForm())
+            {
+                // If the form was showing, we had subscribed
+
+                uiapp.Idling -= IdlingHandler;
+            }
+        }
+
+        #endregion
         public Result OnStartup(UIControlledApplication app)
         {
      
-            //_app = this;
-            //_form = null;
+            _app = this;
+            _form = null;
             AddMenu(app);
-            while (app != null)
-            {
-
-            }
+          
             return Result.Succeeded;
         }
 
         public Result OnShutdown(UIControlledApplication a)
         {
- 
+
+            if (CloseForm())
+            {
+                a.Idling -= IdlingHandler;
+            }
             return Result.Succeeded;
         }
 
@@ -152,28 +173,81 @@ namespace Camera_Execute
 
                 UIView uiview = GetActiveUiView(uidoc);
 
-                // get the coordinates of Revit Window
-                Autodesk.Revit.DB.Rectangle rect = uiview.GetWindowRectangle();
+                
 
-                // create a 2D point "p" for mouse position
-                Point p = System.Windows.Forms.Cursor.Position;
+
+                #region RevitOrthoCamera
+                // Save current 3D view
+                var view3D = doc.ActiveView as View3D;
+
+                if (view3D == null || view3D.IsPerspective)
+                {
+                    TaskDialog ts = new TaskDialog("Incorrect View selected")
+                    {
+                        MainContent = "Please, select 3D Orthographic view."
+                    };
+
+                    ts.Show();
+                    
+                }
+
+                // Get viewOrientation3D
+                ViewOrientation3D viewOrientation3D = view3D.GetOrientation();
+                ForwardDirection = viewOrientation3D.ForwardDirection;
+                UpDirection = viewOrientation3D.UpDirection;
+                var rightDirection = ForwardDirection.CrossProduct(UpDirection);
+                EyePosition = viewOrientation3D.EyePosition;
+
+                IList<UIView> views = uidoc.GetOpenUIViews();
+                UIView currentView = views.FirstOrDefault(t => t.ViewId == view3D.Id);
+
+                //Corners of the active UI view
+                if (currentView == null)
+                {
+                    TaskDialog ts = new TaskDialog("Current View is null")
+                    {
+                        MainContent = "Current view is null"
+                    };
+                }
+
+                IList<XYZ> corners = currentView.GetZoomCorners();
+                XYZ corner1 = corners[0];
+                XYZ corner2 = corners[1];
+
+                //center of the UI view
+                double x = (corner1.X + corner2.X) / 2;
+                double y = (corner1.Y + corner2.Y) / 2;
+                double z = (corner1.Z + corner2.Z) / 2;
+                XYZ viewCenter = new XYZ(x, y, z);
+                EyePosition = viewCenter;
+
+                // Calculate diagonal vector
+                XYZ diagVector = corner1 - corner2;
+
+                double height = 0.5 * Math.Abs(diagVector.DotProduct(UpDirection));
+                double width = 0.5 * Math.Abs(diagVector.DotProduct(rightDirection));
+                Scale = Math.Min(height, width);
+                #endregion
 
                 try
                 {
-                    string path = @"C:\Users\cgrte\source\repos\Coord.Revit.RibbonButton\Coord.Revit.RibbonButton\CoordinateData\Coordinates.txt";
+                    string path = @"C:\Users\cgrte\source\repos\Camera Execute\Camera Execute\CoordinateData\Coordinates.txt";
                     //Pass the filepath and filename to the StreamWriter Constructor
                     if (!File.Exists(path))
                     {
                         // Create a file to write to.
                         using (StreamWriter sw = File.CreateText(path))
                         {
-                            sw.WriteLine("Coordinates in Windows Screen");
+                            sw.WriteLine("Data of 3D Orientation View\n");
                         }
                     }
 
                     using (StreamWriter sw = File.AppendText(path))
                     {
-                        sw.WriteLine(string.Format("X: {0,-4} Y: {1}", p.X, p.Y));
+                        
+                        sw.WriteLine(string.Format("EyePosition  -->  X: {0,-4} Y: {1}  Z: {2}", EyePosition.X, EyePosition.Y, EyePosition.Z));
+                        sw.WriteLine(string.Format("UpDirection  -->  X: {0,-4} Y: {1}  Z: {2}", UpDirection.X, UpDirection.Y, UpDirection.Z));
+                        sw.WriteLine(string.Format("FwdDirection -->  X: {0,-4} Y: {1}  Z: {2}\n", ForwardDirection.X, ForwardDirection.Y, ForwardDirection.Z));
                     }
 
                     //Close the file
@@ -184,46 +258,6 @@ namespace Camera_Execute
                     Console.WriteLine("Exception: " + ex.Message);
                 }
 
-                // determine relative position of p between two corners
-                // to obtain the relative width and height location values dx and dy 
-
-                double dx = (double)(p.X - rect.Left)
-                  / (rect.Right - rect.Left);
-
-                double dy = (double)(p.Y - rect.Bottom)
-                  / (rect.Top - rect.Bottom);
-
-                // model coordinates of  the viewcorners from UIView
-                IList<XYZ> corners = uiview.GetZoomCorners();
-                XYZ a = corners[0];
-                XYZ b = corners[1];
-                XYZ v = b - a;
-
-                // cursor point 'q' in model coordinates from the two relative values
-                XYZ q = a
-                  + dx * v.X * XYZ.BasisX
-                  + dy * v.Y * XYZ.BasisY;
-
-                // If the current view happens to be a 3D view, 
-                // we could simply use it right away. In 
-                // general we have to find a different one to 
-                // run the ReferenceIntersector in.
-
-                View3D view3d = GetView3d(doc); // ray casting requires a 3D view to operate in.
-
-                XYZ viewdir = view.ViewDirection; // view direction
-
-                XYZ origin = q + 1000 * viewdir;  // ray origin
-
-                // Move tooltip to current cursor 
-                // location and set tooltip text.
-                Point cursor = System.Windows.Forms.Cursor.Position;
-
-                // create the coordinates in a string format, to show at the cursor tip
-                string location = string.Format("X: {0,-6} Y: {1}", cursor.X, cursor.Y);
-
-                _form.Location = p + new Size(_form.Offset);
-                _form.SetText(location);
             }
         }
         #endregion
@@ -302,6 +336,12 @@ namespace Camera_Execute
             return bmp;
         }
         #endregion
+        public static double Scale { get; private set; }
 
+        public static XYZ EyePosition { get; private set; }
+
+        public static XYZ UpDirection { get; private set; }
+
+        public static XYZ ForwardDirection { get; private set; }
     }
 }
