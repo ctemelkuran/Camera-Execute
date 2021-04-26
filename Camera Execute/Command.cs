@@ -43,12 +43,6 @@ namespace Camera_Execute
 
             return Result.Succeeded;
         }
-        public static double Scale { get; private set; }
 
-        public static XYZ EyePosition { get; private set; }
-
-        public static XYZ UpDirection { get; private set; }
-
-        public static XYZ ForwardDirection { get; private set; }
     }
 }
