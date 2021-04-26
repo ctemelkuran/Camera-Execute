@@ -29,15 +29,15 @@ namespace Camera_Execute
           .GetExecutingAssembly().Location;
 
         // Singleton external application class instance.
-        //internal static App _app;
+        internal static App _app;
 
         /// <summary>
         /// Provide access to singleton class instance.
         /// </summary>
-        //public static App Instance
-        //{
-        //    get { return _app; }
-        //}
+        public static App Instance
+        {
+            get { return _app; }
+        }
 
         /// <summary>
         /// The tooltip form to display.
@@ -70,20 +70,32 @@ namespace Camera_Execute
         //    }
         //}
         #endregion
-       
+       static bool CloseForm()
+        {
+            bool rc = _form != null;
+
+            if (rc)
+            {
+                if (!_form.IsDisposed)
+                {
+                    _form.Dispose();
+                }
+                _form = null;
+            }
+            return rc;
+        }
 
 
 
         public Result OnStartup(UIControlledApplication app)
         {
      
-            //_app = this;
-            //_form = null;
-            AddMenu(app);
-            while (app != null)
-            {
+            _app = this;
+            _form = null;
 
-            }
+            AddMenu(app);
+            
+
             return Result.Succeeded;
         }
 

@@ -47,7 +47,7 @@ namespace Camera_Execute
                 if (form.Name == "ChangeCameraForm")
                 {
                     isOpen = true;
-                    break;
+                    
                 }
                 else
                 {
@@ -56,10 +56,14 @@ namespace Camera_Execute
             }
 
 
+
             while (isOpen == true)
             {
+                if (upX.Text != Convert.ToString(up.X))
+                {
 
-                GetViewAndConvert();
+                }
+                
             }
         }
 
@@ -191,7 +195,10 @@ namespace Camera_Execute
             XYZ eye = getViewOrientation3D.EyePosition; // camera position
             XYZ up = getViewOrientation3D.UpDirection; // up direction of the camera
             XYZ fwd = getViewOrientation3D.ForwardDirection; // the direction the camera is looking at
+            if (upX.Text != Convert.ToString(up.X))
+            {
 
+            }
             //initialize the textbox data
             eyeX.Text = eye.X.ToString("0.000");
             eyeY.Text = eye.Y.ToString("0.000");
@@ -204,6 +211,8 @@ namespace Camera_Execute
             fwdX.Text = Convert.ToString(fwd.X);
             fwdY.Text = Convert.ToString(fwd.Y);
             fwdZ.Text = Convert.ToString(fwd.Z);
+
+            
         }
         private void GetViewOrientation()
         {
