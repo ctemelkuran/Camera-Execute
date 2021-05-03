@@ -30,9 +30,10 @@ namespace Camera_Execute
        
         public void SetText(XYZ eyePosition, XYZ UpDirection, XYZ ForwardDirection)
         {
-            eyeX.Text = eyePosition.X.ToString();
-            eyeY.Text = eyePosition.Y.ToString();
-            eyeZ.Text = eyePosition.Z.ToString();
+            tbxEyeX.Text = eyePosition.X.ToString();
+            tbxEyeY.Text = eyePosition.Y.ToString();
+            tbxEyeZ.Text = eyePosition.Z.ToString();
+            tbxUpX.Text = UpDirection.X.ToString();
         }
 
         public ChangeCameraForm(ExternalCommandData commandData)
@@ -70,9 +71,9 @@ namespace Camera_Execute
             try
             {
                 // Get the necessary information and invoke the GetPointData method
-                XYZ eyeUser = GetPointData(eyeX.Text, eyeY.Text, eyeZ.Text);
-                XYZ upUser = GetPointData(upX.Text, upY.Text, upZ.Text);
-                XYZ fwdUser = GetPointData(fwdX.Text, fwdY.Text, fwdZ.Text);
+                XYZ eyeUser = GetPointData(tbxEyeX.Text, tbxEyeY.Text, tbxEyeZ.Text);
+                XYZ upUser = GetPointData(tbxUpX.Text, tbxUpY.Text, tbxUpZ.Text);
+                XYZ fwdUser = GetPointData(tbxFwdX.Text, tbxFwdY.Text, tbxFwdZ.Text);
 
 
                 ViewOrientation3D viewOrientation = new ViewOrientation3D(eyeUser, upUser, fwdUser);
@@ -95,9 +96,6 @@ namespace Camera_Execute
 
             }
 
-            // If the creation is successful, close this form
-            // this.DialogResult = DialogResult.OK;
-            // this.Close();
         }
 
 
@@ -167,7 +165,7 @@ namespace Camera_Execute
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             GetViewAndConvert();
-           
+            
         }
         
         private void GetViewAndConvert()
@@ -182,36 +180,32 @@ namespace Camera_Execute
             XYZ fwd = getViewOrientation3D.ForwardDirection; // the direction the camera is looking at
             
             //initialize the textbox data
-            eyeX.Text = eye.X.ToString("0.000");
-            eyeY.Text = eye.Y.ToString("0.000");
-            eyeZ.Text = eye.Z.ToString("0.000");
+            tbxEyeX.Text = eye.X.ToString("0.000");
+            tbxEyeY.Text = eye.Y.ToString("0.000");
+            tbxEyeZ.Text = eye.Z.ToString("0.000");
             //write up direction to textbox
-            upX.Text = Convert.ToString(up.X);
-            upY.Text = Convert.ToString(up.Y);
-            upZ.Text = Convert.ToString(up.Z);
+            tbxUpX.Text = Convert.ToString(up.X);
+            tbxUpY.Text = Convert.ToString(up.Y);
+            tbxUpZ.Text = Convert.ToString(up.Z);
             //write forward direction to textbox
-            fwdX.Text = Convert.ToString(fwd.X);
-            fwdY.Text = Convert.ToString(fwd.Y);
-            fwdZ.Text = Convert.ToString(fwd.Z);
+            tbxFwdX.Text = Convert.ToString(fwd.X);
+            tbxFwdY.Text = Convert.ToString(fwd.Y);
+            tbxFwdZ.Text = Convert.ToString(fwd.Z);
         }
         private void WriteToTextBox()
         {
-            eyeX.Text = App.EyePosition.X.ToString("0.000");
-            eyeY.Text = App.EyePosition.Y.ToString("0.000");
-            eyeZ.Text = App.EyePosition.Z.ToString("0.000");
+            tbxEyeX.Text = App.EyePosition.X.ToString("0.000");
+            tbxEyeY.Text = App.EyePosition.Y.ToString("0.000");
+            tbxEyeZ.Text = App.EyePosition.Z.ToString("0.000");
             //write up direction to textbox
-            upX.Text = Convert.ToString(App.UpDirection.X);
-            upY.Text = Convert.ToString(App.UpDirection.Y);
-            upZ.Text = Convert.ToString(App.UpDirection.Z);
+            tbxUpX.Text = Convert.ToString(App.UpDirection.X);
+            tbxUpY.Text = Convert.ToString(App.UpDirection.Y);
+            tbxUpZ.Text = Convert.ToString(App.UpDirection.Z);
             //write forward direction to textbox
-            fwdX.Text = Convert.ToString(App.ForwardDirection.X);
-            fwdY.Text = Convert.ToString(App.ForwardDirection.Y);
-            fwdZ.Text = Convert.ToString(App.ForwardDirection.Z);
+            tbxFwdX.Text = Convert.ToString(App.ForwardDirection.X);
+            tbxFwdY.Text = Convert.ToString(App.ForwardDirection.Y);
+            tbxFwdZ.Text = Convert.ToString(App.ForwardDirection.Z);
         }
 
-        private void eyeX_TextChanged(object sender, EventArgs e)
-        {
-            uiapp.Idling -= App._app.IdlingHandler;
-        }
     }
 }

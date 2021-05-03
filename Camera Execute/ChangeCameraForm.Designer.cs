@@ -37,15 +37,15 @@
             this.EyePos = new System.Windows.Forms.Label();
             this.UpDir = new System.Windows.Forms.Label();
             this.ForDir = new System.Windows.Forms.Label();
-            this.eyeX = new System.Windows.Forms.TextBox();
-            this.eyeY = new System.Windows.Forms.TextBox();
-            this.eyeZ = new System.Windows.Forms.TextBox();
-            this.upX = new System.Windows.Forms.TextBox();
-            this.upY = new System.Windows.Forms.TextBox();
-            this.upZ = new System.Windows.Forms.TextBox();
-            this.fwdZ = new System.Windows.Forms.TextBox();
-            this.fwdY = new System.Windows.Forms.TextBox();
-            this.fwdX = new System.Windows.Forms.TextBox();
+            this.tbxEyeX = new System.Windows.Forms.TextBox();
+            this.tbxEyeY = new System.Windows.Forms.TextBox();
+            this.tbxEyeZ = new System.Windows.Forms.TextBox();
+            this.tbxUpX = new System.Windows.Forms.TextBox();
+            this.tbxUpY = new System.Windows.Forms.TextBox();
+            this.tbxUpZ = new System.Windows.Forms.TextBox();
+            this.tbxFwdZ = new System.Windows.Forms.TextBox();
+            this.tbxFwdY = new System.Windows.Forms.TextBox();
+            this.tbxFwdX = new System.Windows.Forms.TextBox();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -127,69 +127,68 @@
             this.ForDir.TabIndex = 7;
             this.ForDir.Text = "Forward Direction";
             // 
-            // eyeX
+            // tbxEyeX
             // 
-            this.eyeX.Location = new System.Drawing.Point(154, 58);
-            this.eyeX.Name = "eyeX";
-            this.eyeX.Size = new System.Drawing.Size(71, 20);
-            this.eyeX.TabIndex = 8;
-            this.eyeX.TextChanged += new System.EventHandler(this.eyeX_TextChanged);
+            this.tbxEyeX.Location = new System.Drawing.Point(154, 58);
+            this.tbxEyeX.Name = "tbxEyeX";
+            this.tbxEyeX.Size = new System.Drawing.Size(71, 20);
+            this.tbxEyeX.TabIndex = 8;
             // 
-            // eyeY
+            // tbxEyeY
             // 
-            this.eyeY.Location = new System.Drawing.Point(246, 58);
-            this.eyeY.Name = "eyeY";
-            this.eyeY.Size = new System.Drawing.Size(69, 20);
-            this.eyeY.TabIndex = 9;
+            this.tbxEyeY.Location = new System.Drawing.Point(246, 58);
+            this.tbxEyeY.Name = "tbxEyeY";
+            this.tbxEyeY.Size = new System.Drawing.Size(69, 20);
+            this.tbxEyeY.TabIndex = 9;
             // 
-            // eyeZ
+            // tbxEyeZ
             // 
-            this.eyeZ.Location = new System.Drawing.Point(337, 58);
-            this.eyeZ.Name = "eyeZ";
-            this.eyeZ.Size = new System.Drawing.Size(69, 20);
-            this.eyeZ.TabIndex = 10;
+            this.tbxEyeZ.Location = new System.Drawing.Point(337, 58);
+            this.tbxEyeZ.Name = "tbxEyeZ";
+            this.tbxEyeZ.Size = new System.Drawing.Size(69, 20);
+            this.tbxEyeZ.TabIndex = 10;
             // 
-            // upX
+            // tbxUpX
             // 
-            this.upX.Location = new System.Drawing.Point(154, 87);
-            this.upX.Name = "upX";
-            this.upX.Size = new System.Drawing.Size(71, 20);
-            this.upX.TabIndex = 11;
+            this.tbxUpX.Location = new System.Drawing.Point(154, 87);
+            this.tbxUpX.Name = "tbxUpX";
+            this.tbxUpX.Size = new System.Drawing.Size(71, 20);
+            this.tbxUpX.TabIndex = 11;
             // 
-            // upY
+            // tbxUpY
             // 
-            this.upY.Location = new System.Drawing.Point(246, 87);
-            this.upY.Name = "upY";
-            this.upY.Size = new System.Drawing.Size(69, 20);
-            this.upY.TabIndex = 12;
+            this.tbxUpY.Location = new System.Drawing.Point(246, 87);
+            this.tbxUpY.Name = "tbxUpY";
+            this.tbxUpY.Size = new System.Drawing.Size(69, 20);
+            this.tbxUpY.TabIndex = 12;
             // 
-            // upZ
+            // tbxUpZ
             // 
-            this.upZ.Location = new System.Drawing.Point(337, 87);
-            this.upZ.Name = "upZ";
-            this.upZ.Size = new System.Drawing.Size(69, 20);
-            this.upZ.TabIndex = 13;
+            this.tbxUpZ.Location = new System.Drawing.Point(337, 87);
+            this.tbxUpZ.Name = "tbxUpZ";
+            this.tbxUpZ.Size = new System.Drawing.Size(69, 20);
+            this.tbxUpZ.TabIndex = 13;
             // 
-            // fwdZ
+            // tbxFwdZ
             // 
-            this.fwdZ.Location = new System.Drawing.Point(337, 113);
-            this.fwdZ.Name = "fwdZ";
-            this.fwdZ.Size = new System.Drawing.Size(69, 20);
-            this.fwdZ.TabIndex = 16;
+            this.tbxFwdZ.Location = new System.Drawing.Point(337, 113);
+            this.tbxFwdZ.Name = "tbxFwdZ";
+            this.tbxFwdZ.Size = new System.Drawing.Size(69, 20);
+            this.tbxFwdZ.TabIndex = 16;
             // 
-            // fwdY
+            // tbxFwdY
             // 
-            this.fwdY.Location = new System.Drawing.Point(246, 113);
-            this.fwdY.Name = "fwdY";
-            this.fwdY.Size = new System.Drawing.Size(69, 20);
-            this.fwdY.TabIndex = 15;
+            this.tbxFwdY.Location = new System.Drawing.Point(246, 113);
+            this.tbxFwdY.Name = "tbxFwdY";
+            this.tbxFwdY.Size = new System.Drawing.Size(69, 20);
+            this.tbxFwdY.TabIndex = 15;
             // 
-            // fwdX
+            // tbxFwdX
             // 
-            this.fwdX.Location = new System.Drawing.Point(154, 113);
-            this.fwdX.Name = "fwdX";
-            this.fwdX.Size = new System.Drawing.Size(71, 20);
-            this.fwdX.TabIndex = 14;
+            this.tbxFwdX.Location = new System.Drawing.Point(154, 113);
+            this.tbxFwdX.Name = "tbxFwdX";
+            this.tbxFwdX.Size = new System.Drawing.Size(71, 20);
+            this.tbxFwdX.TabIndex = 14;
             // 
             // btnUpdate
             // 
@@ -209,15 +208,15 @@
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(418, 202);
             this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.fwdZ);
-            this.Controls.Add(this.fwdY);
-            this.Controls.Add(this.fwdX);
-            this.Controls.Add(this.upZ);
-            this.Controls.Add(this.upY);
-            this.Controls.Add(this.upX);
-            this.Controls.Add(this.eyeZ);
-            this.Controls.Add(this.eyeY);
-            this.Controls.Add(this.eyeX);
+            this.Controls.Add(this.tbxFwdZ);
+            this.Controls.Add(this.tbxFwdY);
+            this.Controls.Add(this.tbxFwdX);
+            this.Controls.Add(this.tbxUpZ);
+            this.Controls.Add(this.tbxUpY);
+            this.Controls.Add(this.tbxUpX);
+            this.Controls.Add(this.tbxEyeZ);
+            this.Controls.Add(this.tbxEyeY);
+            this.Controls.Add(this.tbxEyeX);
             this.Controls.Add(this.ForDir);
             this.Controls.Add(this.UpDir);
             this.Controls.Add(this.EyePos);
@@ -245,15 +244,15 @@
         private System.Windows.Forms.Label EyePos;
         private System.Windows.Forms.Label UpDir;
         private System.Windows.Forms.Label ForDir;
-        private System.Windows.Forms.TextBox eyeX;
-        private System.Windows.Forms.TextBox eyeY;
-        private System.Windows.Forms.TextBox eyeZ;
-        private System.Windows.Forms.TextBox upX;
-        private System.Windows.Forms.TextBox upY;
-        private System.Windows.Forms.TextBox upZ;
-        private System.Windows.Forms.TextBox fwdZ;
-        private System.Windows.Forms.TextBox fwdY;
-        private System.Windows.Forms.TextBox fwdX;
+        private System.Windows.Forms.TextBox tbxEyeX;
+        private System.Windows.Forms.TextBox tbxEyeY;
+        private System.Windows.Forms.TextBox tbxEyeZ;
+        private System.Windows.Forms.TextBox tbxUpX;
+        private System.Windows.Forms.TextBox tbxUpY;
+        private System.Windows.Forms.TextBox tbxUpZ;
+        private System.Windows.Forms.TextBox tbxFwdZ;
+        private System.Windows.Forms.TextBox tbxFwdY;
+        private System.Windows.Forms.TextBox tbxFwdX;
         private System.Windows.Forms.Button btnUpdate;
     }
 }

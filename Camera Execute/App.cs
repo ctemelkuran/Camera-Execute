@@ -260,6 +260,7 @@ namespace Camera_Execute
 
                 
                 _form.SetText(EyePosition, UpDirection, ForwardDirection);
+
                 
 
             }
