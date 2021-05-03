@@ -40,9 +40,9 @@ namespace Camera_Execute
         }
 
         /// <summary>
-        /// The tooltip form to display.
+        /// Form to display.
         /// </summary>
-        internal static ChangeCameraForm _form;
+        internal static ChangeCameraForm _form = null;
 
         /// <summary>
         /// Dispose and null out form.
@@ -258,6 +258,10 @@ namespace Camera_Execute
                     Console.WriteLine("Exception: " + ex.Message);
                 }
 
+                
+                _form.SetText(EyePosition, UpDirection, ForwardDirection);
+                
+
             }
         }
         #endregion
@@ -274,7 +278,7 @@ namespace Camera_Execute
             {
                 app.CreateRibbonTab(RIBBON_TAB);
             }
-            catch (Exception) { } // tab already exists
+            catch (Exception) {} // tab already exists
 
             // get or create panel
             RibbonPanel panel = null;

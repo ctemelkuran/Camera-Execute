@@ -133,6 +133,7 @@
             this.eyeX.Name = "eyeX";
             this.eyeX.Size = new System.Drawing.Size(71, 20);
             this.eyeX.TabIndex = 8;
+            this.eyeX.TextChanged += new System.EventHandler(this.eyeX_TextChanged);
             // 
             // eyeY
             // 

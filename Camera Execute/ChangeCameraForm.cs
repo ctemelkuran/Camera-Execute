@@ -26,7 +26,14 @@ namespace Camera_Execute
         private UIApplication uiapp;
         private UIDocument uidoc;
         private Document doc;
-    
+        
+       
+        public void SetText(XYZ eyePosition, XYZ UpDirection, XYZ ForwardDirection)
+        {
+            eyeX.Text = eyePosition.X.ToString();
+            eyeY.Text = eyePosition.Y.ToString();
+            eyeZ.Text = eyePosition.Z.ToString();
+        }
 
         public ChangeCameraForm(ExternalCommandData commandData)
 
@@ -166,7 +173,7 @@ namespace Camera_Execute
         private void GetViewAndConvert()
         {
             View3D view3D = doc.ActiveView as View3D;
-
+            
             // get view orientation 3D data
             ViewOrientation3D getViewOrientation3D = view3D.GetOrientation();
 
@@ -201,6 +208,10 @@ namespace Camera_Execute
             fwdY.Text = Convert.ToString(App.ForwardDirection.Y);
             fwdZ.Text = Convert.ToString(App.ForwardDirection.Z);
         }
-        
+
+        private void eyeX_TextChanged(object sender, EventArgs e)
+        {
+            uiapp.Idling -= App._app.IdlingHandler;
+        }
     }
 }
