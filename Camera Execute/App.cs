@@ -153,6 +153,11 @@ namespace Camera_Execute
         }
 
         #region IdlingHandler
+        /// <summary>
+        /// Event handler for Idling Event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         public void IdlingHandler(
           object sender,
           IdlingEventArgs args)
@@ -250,23 +255,23 @@ namespace Camera_Execute
                         sw.WriteLine(string.Format("FwdDirection -->  X: {0,-4} Y: {1}  Z: {2}\n", ForwardDirection.X, ForwardDirection.Y, ForwardDirection.Z));
                     }
 
-                    //Close the file
-                    //sw.Close();
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Exception: " + ex.Message);
+                    TaskDialog.Show("Idling Handler", "Exception: " + ex.Message);
                 }
 
                 
                 _form.SetText(EyePosition, UpDirection, ForwardDirection);
 
-                
-
             }
         }
         #endregion
 
+        /// <summary>
+        /// Adds Button to the Revit Menu
+        /// </summary>
+        /// <param name="app"></param>
         #region AddMenu        
         private void AddMenu(UIControlledApplication app)
         {

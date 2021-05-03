@@ -34,6 +34,11 @@ namespace Camera_Execute
             tbxEyeY.Text = eyePosition.Y.ToString();
             tbxEyeZ.Text = eyePosition.Z.ToString();
             tbxUpX.Text = UpDirection.X.ToString();
+            tbxUpY.Text = UpDirection.Y.ToString();
+            tbxUpZ.Text = UpDirection.Z.ToString();
+            tbxFwdX.Text = ForwardDirection.X.ToString();
+            tbxFwdY.Text = ForwardDirection.Y.ToString();
+            tbxFwdZ.Text = ForwardDirection.Z.ToString();
         }
 
         public ChangeCameraForm(ExternalCommandData commandData)
@@ -207,5 +212,6 @@ namespace Camera_Execute
             tbxFwdZ.Text = Convert.ToString(App.ForwardDirection.Z);
         }
 
+  
     }
 }

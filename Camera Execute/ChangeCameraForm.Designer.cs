@@ -52,140 +52,145 @@
             // CamProp
             // 
             this.CamProp.AutoSize = true;
-            this.CamProp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CamProp.Location = new System.Drawing.Point(12, 9);
+            this.CamProp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CamProp.Location = new System.Drawing.Point(134, 9);
             this.CamProp.Name = "CamProp";
-            this.CamProp.Size = new System.Drawing.Size(111, 17);
+            this.CamProp.Size = new System.Drawing.Size(99, 16);
             this.CamProp.TabIndex = 0;
-            this.CamProp.Text = "Camera Execute";
+            this.CamProp.Text = "Camera Data";
             // 
             // X
             // 
             this.X.AutoSize = true;
             this.X.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.X.Location = new System.Drawing.Point(184, 35);
+            this.X.Location = new System.Drawing.Point(134, 41);
             this.X.Name = "X";
-            this.X.Size = new System.Drawing.Size(15, 15);
+            this.X.Size = new System.Drawing.Size(41, 15);
             this.X.TabIndex = 0;
-            this.X.Text = "X";
+            this.X.Text = "X-Axis";
             // 
             // btnSubmit
             // 
             this.btnSubmit.AutoSize = true;
-            this.btnSubmit.Location = new System.Drawing.Point(225, 167);
+            this.btnSubmit.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSubmit.Location = new System.Drawing.Point(207, 167);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(49, 23);
             this.btnSubmit.TabIndex = 2;
             this.btnSubmit.Text = "Submit";
-            this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.UseVisualStyleBackColor = false;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // Y
             // 
             this.Y.AutoSize = true;
             this.Y.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Y.Location = new System.Drawing.Point(278, 35);
+            this.Y.Location = new System.Drawing.Point(227, 40);
             this.Y.Name = "Y";
-            this.Y.Size = new System.Drawing.Size(14, 15);
+            this.Y.Size = new System.Drawing.Size(40, 15);
             this.Y.TabIndex = 3;
-            this.Y.Text = "Y";
+            this.Y.Text = "Y-Axis";
+            this.Y.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Z
             // 
             this.Z.AutoSize = true;
             this.Z.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Z.Location = new System.Drawing.Point(358, 35);
+            this.Z.Location = new System.Drawing.Point(315, 41);
             this.Z.Name = "Z";
-            this.Z.Size = new System.Drawing.Size(14, 15);
+            this.Z.Size = new System.Drawing.Size(40, 15);
             this.Z.TabIndex = 4;
-            this.Z.Text = "Z";
+            this.Z.Text = "Z-Axis";
             // 
             // EyePos
             // 
             this.EyePos.AutoSize = true;
-            this.EyePos.Location = new System.Drawing.Point(15, 61);
+            this.EyePos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EyePos.Location = new System.Drawing.Point(12, 69);
             this.EyePos.Name = "EyePos";
-            this.EyePos.Size = new System.Drawing.Size(65, 13);
+            this.EyePos.Size = new System.Drawing.Size(74, 15);
             this.EyePos.TabIndex = 5;
             this.EyePos.Text = "Eye Position";
             // 
             // UpDir
             // 
             this.UpDir.AutoSize = true;
-            this.UpDir.Location = new System.Drawing.Point(15, 87);
+            this.UpDir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UpDir.Location = new System.Drawing.Point(10, 98);
             this.UpDir.Name = "UpDir";
-            this.UpDir.Size = new System.Drawing.Size(66, 13);
+            this.UpDir.Size = new System.Drawing.Size(75, 15);
             this.UpDir.TabIndex = 6;
             this.UpDir.Text = "Up Direction";
             // 
             // ForDir
             // 
             this.ForDir.AutoSize = true;
-            this.ForDir.Location = new System.Drawing.Point(15, 115);
+            this.ForDir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForDir.Location = new System.Drawing.Point(10, 124);
             this.ForDir.Name = "ForDir";
-            this.ForDir.Size = new System.Drawing.Size(90, 13);
+            this.ForDir.Size = new System.Drawing.Size(104, 15);
             this.ForDir.TabIndex = 7;
             this.ForDir.Text = "Forward Direction";
             // 
             // tbxEyeX
             // 
-            this.tbxEyeX.Location = new System.Drawing.Point(154, 58);
+            this.tbxEyeX.Location = new System.Drawing.Point(120, 68);
             this.tbxEyeX.Name = "tbxEyeX";
             this.tbxEyeX.Size = new System.Drawing.Size(71, 20);
             this.tbxEyeX.TabIndex = 8;
             // 
             // tbxEyeY
             // 
-            this.tbxEyeY.Location = new System.Drawing.Point(246, 58);
+            this.tbxEyeY.Location = new System.Drawing.Point(212, 68);
             this.tbxEyeY.Name = "tbxEyeY";
             this.tbxEyeY.Size = new System.Drawing.Size(69, 20);
             this.tbxEyeY.TabIndex = 9;
             // 
             // tbxEyeZ
             // 
-            this.tbxEyeZ.Location = new System.Drawing.Point(337, 58);
+            this.tbxEyeZ.Location = new System.Drawing.Point(303, 68);
             this.tbxEyeZ.Name = "tbxEyeZ";
             this.tbxEyeZ.Size = new System.Drawing.Size(69, 20);
             this.tbxEyeZ.TabIndex = 10;
             // 
             // tbxUpX
             // 
-            this.tbxUpX.Location = new System.Drawing.Point(154, 87);
+            this.tbxUpX.Location = new System.Drawing.Point(120, 97);
             this.tbxUpX.Name = "tbxUpX";
             this.tbxUpX.Size = new System.Drawing.Size(71, 20);
             this.tbxUpX.TabIndex = 11;
             // 
             // tbxUpY
             // 
-            this.tbxUpY.Location = new System.Drawing.Point(246, 87);
+            this.tbxUpY.Location = new System.Drawing.Point(212, 97);
             this.tbxUpY.Name = "tbxUpY";
             this.tbxUpY.Size = new System.Drawing.Size(69, 20);
             this.tbxUpY.TabIndex = 12;
             // 
             // tbxUpZ
             // 
-            this.tbxUpZ.Location = new System.Drawing.Point(337, 87);
+            this.tbxUpZ.Location = new System.Drawing.Point(303, 97);
             this.tbxUpZ.Name = "tbxUpZ";
             this.tbxUpZ.Size = new System.Drawing.Size(69, 20);
             this.tbxUpZ.TabIndex = 13;
             // 
             // tbxFwdZ
             // 
-            this.tbxFwdZ.Location = new System.Drawing.Point(337, 113);
+            this.tbxFwdZ.Location = new System.Drawing.Point(303, 123);
             this.tbxFwdZ.Name = "tbxFwdZ";
             this.tbxFwdZ.Size = new System.Drawing.Size(69, 20);
             this.tbxFwdZ.TabIndex = 16;
             // 
             // tbxFwdY
             // 
-            this.tbxFwdY.Location = new System.Drawing.Point(246, 113);
+            this.tbxFwdY.Location = new System.Drawing.Point(212, 123);
             this.tbxFwdY.Name = "tbxFwdY";
             this.tbxFwdY.Size = new System.Drawing.Size(69, 20);
             this.tbxFwdY.TabIndex = 15;
             // 
             // tbxFwdX
             // 
-            this.tbxFwdX.Location = new System.Drawing.Point(154, 113);
+            this.tbxFwdX.Location = new System.Drawing.Point(120, 123);
             this.tbxFwdX.Name = "tbxFwdX";
             this.tbxFwdX.Size = new System.Drawing.Size(71, 20);
             this.tbxFwdX.TabIndex = 14;
@@ -193,7 +198,7 @@
             // btnUpdate
             // 
             this.btnUpdate.AutoSize = true;
-            this.btnUpdate.Location = new System.Drawing.Point(154, 167);
+            this.btnUpdate.Location = new System.Drawing.Point(137, 167);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(52, 23);
             this.btnUpdate.TabIndex = 17;
@@ -206,7 +211,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(418, 202);
+            this.ClientSize = new System.Drawing.Size(384, 202);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.tbxFwdZ);
             this.Controls.Add(this.tbxFwdY);
@@ -225,9 +230,11 @@
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.X);
             this.Controls.Add(this.CamProp);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ChangeCameraForm";
-            this.Text = "Change Camera";
+            this.Text = "Camera";
+            this.TransparencyKey = System.Drawing.Color.DeepSkyBlue;
             this.Load += new System.EventHandler(this.btnSubmit_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
