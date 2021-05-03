@@ -26,45 +26,31 @@ namespace Camera_Execute
         private UIApplication uiapp;
         private UIDocument uidoc;
         private Document doc;
-
+        
+       
+        public void SetText(XYZ eyePosition, XYZ UpDirection, XYZ ForwardDirection)
+        {
+            tbxEyeX.Text = eyePosition.X.ToString();
+            tbxEyeY.Text = eyePosition.Y.ToString();
+            tbxEyeZ.Text = eyePosition.Z.ToString();
+            tbxUpX.Text = UpDirection.X.ToString();
+        }
 
         public ChangeCameraForm(ExternalCommandData commandData)
 
         {
-            InitializeComponent();
+        InitializeComponent();
 
-            this.commandData = commandData;
-            uiapp = commandData.Application;
-            uidoc = uiapp.ActiveUIDocument;
-            doc = uidoc.Document;
+        this.commandData = commandData;
+        uiapp = commandData.Application;
+        uidoc = uiapp.ActiveUIDocument;
+        doc = uidoc.Document;
+            
+        // active view
+        GetViewAndConvert();
 
-            // active view
-            GetViewAndConvert();
+        //WriteToTextBox();
 
-            bool isOpen = false;
-            foreach (System.Windows.Forms.Form form in System.Windows.Forms.Application.OpenForms)
-            {
-                if (form.Name == "ChangeCameraForm")
-                {
-                    isOpen = true;
-                    
-                }
-                else
-                {
-                    isOpen = false;
-                }
-            }
-
-
-
-            while (isOpen == true)
-            {
-                if (upX.Text != Convert.ToString(up.X))
-                {
-
-                }
-                
-            }
         }
 
 
@@ -85,9 +71,9 @@ namespace Camera_Execute
             try
             {
                 // Get the necessary information and invoke the GetPointData method
-                XYZ eyeUser = GetPointData(eyeX.Text, eyeY.Text, eyeZ.Text);
-                XYZ upUser = GetPointData(upX.Text, upY.Text, upZ.Text);
-                XYZ fwdUser = GetPointData(fwdX.Text, fwdY.Text, fwdZ.Text);
+                XYZ eyeUser = GetPointData(tbxEyeX.Text, tbxEyeY.Text, tbxEyeZ.Text);
+                XYZ upUser = GetPointData(tbxUpX.Text, tbxUpY.Text, tbxUpZ.Text);
+                XYZ fwdUser = GetPointData(tbxFwdX.Text, tbxFwdY.Text, tbxFwdZ.Text);
 
 
                 ViewOrientation3D viewOrientation = new ViewOrientation3D(eyeUser, upUser, fwdUser);
@@ -110,9 +96,6 @@ namespace Camera_Execute
 
             }
 
-            // If the creation is successful, close this form
-            // this.DialogResult = DialogResult.OK;
-            // this.Close();
         }
 
 
@@ -182,48 +165,47 @@ namespace Camera_Execute
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             GetViewAndConvert();
-           
+            
         }
-
+        
         private void GetViewAndConvert()
         {
             View3D view3D = doc.ActiveView as View3D;
-
-            // get view orientation 3D data
-            ViewOrientation3D getViewOrientation3D = view3D.GetOrientation();
-
-            XYZ eye = getViewOrientation3D.EyePosition; // camera position
-            XYZ up = getViewOrientation3D.UpDirection; // up direction of the camera
-            XYZ fwd = getViewOrientation3D.ForwardDirection; // the direction the camera is looking at
-            if (upX.Text != Convert.ToString(up.X))
-            {
-
-            }
-            //initialize the textbox data
-            eyeX.Text = eye.X.ToString("0.000");
-            eyeY.Text = eye.Y.ToString("0.000");
-            eyeZ.Text = eye.Z.ToString("0.000");
-            //write up direction to textbox
-            upX.Text = Convert.ToString(up.X);
-            upY.Text = Convert.ToString(up.Y);
-            upZ.Text = Convert.ToString(up.Z);
-            //write forward direction to textbox
-            fwdX.Text = Convert.ToString(fwd.X);
-            fwdY.Text = Convert.ToString(fwd.Y);
-            fwdZ.Text = Convert.ToString(fwd.Z);
-
             
-        }
-        private void GetViewOrientation()
-        {
-            View3D view3D = doc.ActiveView as View3D;
-
             // get view orientation 3D data
             ViewOrientation3D getViewOrientation3D = view3D.GetOrientation();
 
             XYZ eye = getViewOrientation3D.EyePosition; // camera position
             XYZ up = getViewOrientation3D.UpDirection; // up direction of the camera
             XYZ fwd = getViewOrientation3D.ForwardDirection; // the direction the camera is looking at
+            
+            //initialize the textbox data
+            tbxEyeX.Text = eye.X.ToString("0.000");
+            tbxEyeY.Text = eye.Y.ToString("0.000");
+            tbxEyeZ.Text = eye.Z.ToString("0.000");
+            //write up direction to textbox
+            tbxUpX.Text = Convert.ToString(up.X);
+            tbxUpY.Text = Convert.ToString(up.Y);
+            tbxUpZ.Text = Convert.ToString(up.Z);
+            //write forward direction to textbox
+            tbxFwdX.Text = Convert.ToString(fwd.X);
+            tbxFwdY.Text = Convert.ToString(fwd.Y);
+            tbxFwdZ.Text = Convert.ToString(fwd.Z);
         }
+        private void WriteToTextBox()
+        {
+            tbxEyeX.Text = App.EyePosition.X.ToString("0.000");
+            tbxEyeY.Text = App.EyePosition.Y.ToString("0.000");
+            tbxEyeZ.Text = App.EyePosition.Z.ToString("0.000");
+            //write up direction to textbox
+            tbxUpX.Text = Convert.ToString(App.UpDirection.X);
+            tbxUpY.Text = Convert.ToString(App.UpDirection.Y);
+            tbxUpZ.Text = Convert.ToString(App.UpDirection.Z);
+            //write forward direction to textbox
+            tbxFwdX.Text = Convert.ToString(App.ForwardDirection.X);
+            tbxFwdY.Text = Convert.ToString(App.ForwardDirection.Y);
+            tbxFwdZ.Text = Convert.ToString(App.ForwardDirection.Z);
+        }
+
     }
 }

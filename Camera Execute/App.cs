@@ -40,37 +40,15 @@ namespace Camera_Execute
         }
 
         /// <summary>
-        /// The tooltip form to display.
+        /// Form to display.
         /// </summary>
-        internal static ChangeCameraForm _form;
+        internal static ChangeCameraForm _form = null;
 
-        #region ShowForm
         /// <summary>
-        /// Create and show the form, 
-        /// unless it already exists.
+        /// Dispose and null out form.
+        /// Return true if it was previously not disposed.
         /// </summary>
-        /// <remarks>
-        /// The external command invokes 
-        /// this on end-user request.
-        /// </remarks>
-        //public void ShowForm(UIApplication uiapp)
-        //{
-        //    // If we do not have a form yet, create and show it
-
-        //    if (_form == null || _form.IsDisposed)
-        //    {
-        //        // Instantiate Form1 to use 
-        //        // the designer generated form.
-
-        //        _form = new Form1();
-
-        //        _form.Show();
-
-
-        //    }
-        //}
-        #endregion
-       static bool CloseForm()
+        static bool CloseForm()
         {
             bool rc = _form != null;
 
@@ -85,23 +63,70 @@ namespace Camera_Execute
             return rc;
         }
 
+        #region ShowForm
+        /// <summary>
+        /// Create and show the form, 
+        /// unless it already exists.
+        /// </summary>
+        /// <remarks>
+        /// The external command invokes 
+        /// this on end-user request.
+        /// </remarks>
+        public void ShowForm(ExternalCommandData commandData)
+        {
+            // If we do not have a form yet, create and show it
 
+            if (_form == null || _form.IsDisposed)
+            {
+                // Instantiate Form1 to use 
+                // the designer generated form.
 
+                _form = new ChangeCameraForm(commandData);
+
+                _form.Show();
+
+                UIApplication uiapp = commandData.Application;
+                uiapp.Idling += IdlingHandler;
+            }
+        }
+        #endregion
+
+        #region HideForm
+        /// <summary>
+        /// Hide the form.
+        /// </summary>
+        /// <remarks>
+        /// The external command invokes 
+        /// this on end-user request.
+        /// </remarks>
+        public void HideForm(UIApplication uiapp)
+        {
+            if (CloseForm())
+            {
+                // If the form was showing, we had subscribed
+
+                uiapp.Idling -= IdlingHandler;
+            }
+        }
+
+        #endregion
         public Result OnStartup(UIControlledApplication app)
         {
      
             _app = this;
             _form = null;
-
             AddMenu(app);
-            
-
+          
             return Result.Succeeded;
         }
 
         public Result OnShutdown(UIControlledApplication a)
         {
- 
+
+            if (CloseForm())
+            {
+                a.Idling -= IdlingHandler;
+            }
             return Result.Succeeded;
         }
 
@@ -127,6 +152,120 @@ namespace Camera_Execute
             return uiview;
         }
 
+        #region IdlingHandler
+        public void IdlingHandler(
+          object sender,
+          IdlingEventArgs args)
+        {
+            UIApplication uiapp = sender as UIApplication;
+            UIDocument uidoc = uiapp.ActiveUIDocument;
+
+            // UI document is null if the project is closed.
+
+            if (null == uidoc || _form.IsDisposed)
+            {
+                uiapp.Idling -= IdlingHandler;
+            }
+            else // form still exists
+            {
+                Document doc = uidoc.Document;
+                View view = doc.ActiveView;
+
+                UIView uiview = GetActiveUiView(uidoc);
+
+                
+
+
+                #region RevitOrthoCamera
+                // Save current 3D view
+                var view3D = doc.ActiveView as View3D;
+
+                if (view3D == null || view3D.IsPerspective)
+                {
+                    TaskDialog ts = new TaskDialog("Incorrect View selected")
+                    {
+                        MainContent = "Please, select 3D Orthographic view."
+                    };
+
+                    ts.Show();
+                    
+                }
+
+                // Get viewOrientation3D
+                ViewOrientation3D viewOrientation3D = view3D.GetOrientation();
+                ForwardDirection = viewOrientation3D.ForwardDirection;
+                UpDirection = viewOrientation3D.UpDirection;
+                var rightDirection = ForwardDirection.CrossProduct(UpDirection);
+                EyePosition = viewOrientation3D.EyePosition;
+
+                IList<UIView> views = uidoc.GetOpenUIViews();
+                UIView currentView = views.FirstOrDefault(t => t.ViewId == view3D.Id);
+
+                //Corners of the active UI view
+                if (currentView == null)
+                {
+                    TaskDialog ts = new TaskDialog("Current View is null")
+                    {
+                        MainContent = "Current view is null"
+                    };
+                }
+
+                IList<XYZ> corners = currentView.GetZoomCorners();
+                XYZ corner1 = corners[0];
+                XYZ corner2 = corners[1];
+
+                //center of the UI view
+                double x = (corner1.X + corner2.X) / 2;
+                double y = (corner1.Y + corner2.Y) / 2;
+                double z = (corner1.Z + corner2.Z) / 2;
+                XYZ viewCenter = new XYZ(x, y, z);
+                EyePosition = viewCenter;
+
+                // Calculate diagonal vector
+                XYZ diagVector = corner1 - corner2;
+
+                double height = 0.5 * Math.Abs(diagVector.DotProduct(UpDirection));
+                double width = 0.5 * Math.Abs(diagVector.DotProduct(rightDirection));
+                Scale = Math.Min(height, width);
+                #endregion
+
+                try
+                {
+                    string path = @"C:\Users\cgrte\source\repos\Camera Execute\Camera Execute\CoordinateData\Coordinates.txt";
+                    //Pass the filepath and filename to the StreamWriter Constructor
+                    if (!File.Exists(path))
+                    {
+                        // Create a file to write to.
+                        using (StreamWriter sw = File.CreateText(path))
+                        {
+                            sw.WriteLine("Data of 3D Orientation View\n");
+                        }
+                    }
+
+                    using (StreamWriter sw = File.AppendText(path))
+                    {
+                        
+                        sw.WriteLine(string.Format("EyePosition  -->  X: {0,-4} Y: {1}  Z: {2}", EyePosition.X, EyePosition.Y, EyePosition.Z));
+                        sw.WriteLine(string.Format("UpDirection  -->  X: {0,-4} Y: {1}  Z: {2}", UpDirection.X, UpDirection.Y, UpDirection.Z));
+                        sw.WriteLine(string.Format("FwdDirection -->  X: {0,-4} Y: {1}  Z: {2}\n", ForwardDirection.X, ForwardDirection.Y, ForwardDirection.Z));
+                    }
+
+                    //Close the file
+                    //sw.Close();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Exception: " + ex.Message);
+                }
+
+                
+                _form.SetText(EyePosition, UpDirection, ForwardDirection);
+
+                
+
+            }
+        }
+        #endregion
 
         #region AddMenu        
         private void AddMenu(UIControlledApplication app)
@@ -140,7 +279,7 @@ namespace Camera_Execute
             {
                 app.CreateRibbonTab(RIBBON_TAB);
             }
-            catch (Exception) { } // tab already exists
+            catch (Exception) {} // tab already exists
 
             // get or create panel
             RibbonPanel panel = null;
@@ -202,6 +341,12 @@ namespace Camera_Execute
             return bmp;
         }
         #endregion
+        public static double Scale { get; private set; }
 
+        public static XYZ EyePosition { get; private set; }
+
+        public static XYZ UpDirection { get; private set; }
+
+        public static XYZ ForwardDirection { get; private set; }
     }
 }
