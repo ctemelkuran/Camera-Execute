@@ -54,7 +54,6 @@ namespace Camera_Execute
         // active view
         GetViewAndConvert();
 
-        //WriteToTextBox();
 
         }
 
@@ -197,21 +196,6 @@ namespace Camera_Execute
             tbxFwdY.Text = Convert.ToString(fwd.Y);
             tbxFwdZ.Text = Convert.ToString(fwd.Z);
         }
-        private void WriteToTextBox()
-        {
-            tbxEyeX.Text = App.EyePosition.X.ToString("0.000");
-            tbxEyeY.Text = App.EyePosition.Y.ToString("0.000");
-            tbxEyeZ.Text = App.EyePosition.Z.ToString("0.000");
-            //write up direction to textbox
-            tbxUpX.Text = Convert.ToString(App.UpDirection.X);
-            tbxUpY.Text = Convert.ToString(App.UpDirection.Y);
-            tbxUpZ.Text = Convert.ToString(App.UpDirection.Z);
-            //write forward direction to textbox
-            tbxFwdX.Text = Convert.ToString(App.ForwardDirection.X);
-            tbxFwdY.Text = Convert.ToString(App.ForwardDirection.Y);
-            tbxFwdZ.Text = Convert.ToString(App.ForwardDirection.Z);
-        }
-
   
     }
 }

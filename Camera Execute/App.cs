@@ -178,8 +178,6 @@ namespace Camera_Execute
 
                 UIView uiview = GetActiveUiView(uidoc);
 
-                
-
 
                 #region RevitOrthoCamera
                 // Save current 3D view
@@ -256,12 +254,12 @@ namespace Camera_Execute
                     }
 
                 }
-                catch (Exception ex)
+                catch (FileLoadException ex)
                 {
                     TaskDialog.Show("Idling Handler", "Exception: " + ex.Message);
                 }
 
-                
+                //Send ViewOrientation3D XYZ data to form
                 _form.SetText(EyePosition, UpDirection, ForwardDirection);
 
             }
