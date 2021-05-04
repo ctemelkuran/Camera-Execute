@@ -75,20 +75,16 @@ namespace Camera_Execute
         public void ShowForm(ExternalCommandData commandData)
         {
             // If we do not have a form yet, create and show it
-
             if (_form == null || _form.IsDisposed)
             {
-                // Instantiate Form1 to use 
+                // Instantiate ChangeCameraForm to use 
                 // the designer generated form.
 
                 _form = new ChangeCameraForm(commandData);
-
+                
                 _form.Show();
-                _form.WindowState = System.Windows.Forms.FormWindowState.Normal;
-                _form.BringToFront();
-                _form.TopLevel = true;
-                _form.Focus();
-
+                
+                //Subscribe to Idling event
                 UIApplication uiapp = commandData.Application;
                 uiapp.Idling += IdlingHandler;
             }
@@ -108,7 +104,6 @@ namespace Camera_Execute
             if (CloseForm())
             {
                 // If the form was showing, we had subscribed
-
                 uiapp.Idling -= IdlingHandler;
             }
         }
@@ -266,6 +261,14 @@ namespace Camera_Execute
                 //Send ViewOrientation3D XYZ data to form
                 _form.SetText(EyePosition, UpDirection, ForwardDirection);
 
+                //if (_form.WindowState == System.Windows.Forms.FormWindowState.Minimized)
+                //{
+
+                //}
+                _form.WindowState = System.Windows.Forms.FormWindowState.Normal;
+                _form.BringToFront();
+                _form.TopLevel = true;
+                _form.Focus();
             }
         }
         #endregion

@@ -167,7 +167,8 @@ namespace Camera_Execute
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             GetViewAndConvert();
-            uiapp.Idling -= App._app.IdlingHandler;
+
+            //uiapp.Idling -= App._app.IdlingHandler;
         }
         
         private void GetViewAndConvert()
