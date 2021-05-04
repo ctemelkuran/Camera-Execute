@@ -263,12 +263,16 @@ namespace Camera_Execute
 
                 //if (_form.WindowState == System.Windows.Forms.FormWindowState.Minimized)
                 //{
-
+                //    _form.WindowState = System.Windows.Forms.FormWindowState.Normal;
                 //}
-                _form.WindowState = System.Windows.Forms.FormWindowState.Normal;
-                _form.BringToFront();
-                _form.TopLevel = true;
-                _form.Focus();
+                //else
+                //{
+                //_form.BringToFront();
+                //_form.TopLevel = true;
+                //_form.Focus();
+                //}
+                
+                
             }
         }
         #endregion
