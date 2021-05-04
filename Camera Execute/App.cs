@@ -84,6 +84,10 @@ namespace Camera_Execute
                 _form = new ChangeCameraForm(commandData);
 
                 _form.Show();
+                _form.WindowState = System.Windows.Forms.FormWindowState.Normal;
+                _form.BringToFront();
+                _form.TopLevel = true;
+                _form.Focus();
 
                 UIApplication uiapp = commandData.Application;
                 uiapp.Idling += IdlingHandler;

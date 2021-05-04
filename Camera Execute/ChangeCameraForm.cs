@@ -27,7 +27,6 @@ namespace Camera_Execute
         private UIDocument uidoc;
         private Document doc;
         
-       
         public void SetText(XYZ eyePosition, XYZ UpDirection, XYZ ForwardDirection)
         {
             tbxEyeX.Text = eyePosition.X.ToString();
@@ -53,7 +52,6 @@ namespace Camera_Execute
             
         // active view
         GetViewAndConvert();
-
 
         }
 
@@ -169,7 +167,7 @@ namespace Camera_Execute
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             GetViewAndConvert();
-            
+            uiapp.Idling -= App._app.IdlingHandler;
         }
         
         private void GetViewAndConvert()
